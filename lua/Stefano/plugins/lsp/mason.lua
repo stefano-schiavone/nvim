@@ -30,6 +30,8 @@ return {
 				"jdtls", -- Java
 				"html", -- HTML
 				"cssls", -- CSS
+				"ts_ls", -- TypeScript
+				"eslint", -- ESlint
 			},
 			automatic_installation = true,
 		})
