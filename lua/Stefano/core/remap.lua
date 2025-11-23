@@ -8,6 +8,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -45,3 +46,24 @@ vim.keymap.set("n", "<leader>/", "<Plug>CommentaryLine", { silent = true }) -- â
 vim.keymap.set("v", "<leader>/", "<Plug>Commentary", { silent = true }) -- âŒ˜ + / in visual mode
 
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+
+-- LSP remaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+
+-- Quickfix list remap
+vim.keymap.set("n", "<C-j>", ":cnext<CR>", { desc = "Go to next Quickfix List item" })
+vim.keymap.set("n", "<C-k>", ":cprev<CR>", { desc = "Go to previous Quickfix List item" })
+-- Toggle quickfix list safely
+function ToggleQuickfix()
+	for _, win in ipairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			vim.cmd("cclose")
+			return
+		end
+	end
+	vim.cmd("copen")
+end
+
+-- Use leader+q to toggle quickfix
+vim.keymap.set("n", "<leader>q", ToggleQuickfix, { desc = "Toggle Quickfix List" })

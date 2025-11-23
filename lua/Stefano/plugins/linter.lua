@@ -19,8 +19,8 @@ return {
 		-- Configure linters for different filetypes
 		lint.linters_by_ft = {
 			python = { "pylint" },
-			javascript = { "eslint_d" },
-			typescript = { "eslint_d" },
+			javascript = { "eslint" },
+			typescript = { "eslint" },
 			lua = { "luacheck" },
 			csharp = { "csharpier" },
 		}

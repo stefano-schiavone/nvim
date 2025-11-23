@@ -36,7 +36,7 @@ end
 
 -- Define the color-changing function
 local function ColorMyPencils(color)
-	color = color or "boo"
+	color = color or "citylights"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "Visual", { bg = "#5c5f77" })

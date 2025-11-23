@@ -45,5 +45,14 @@ return {
 		vim.keymap.set("n", "<leader>pk", builtin.keymaps, {})
 		vim.keymap.set("n", "<leader>pd", builtin.diagnostics, { desc = "Search Diagnostics" }) -- uses LSP diagnostics
 		vim.keymap.set("n", "<leader>pc", require("telescope.builtin").colorscheme, { desc = "Pick Colorscheme" }) -- Picks colorschemes
+		vim.keymap.set("n", "<leader>pr", builtin.lsp_references, { desc = "Find LSP references" }) -- Picks references
+		vim.keymap.set("n", "<leader>pws", function()
+			local word = vim.fn.expand("<cword>")
+			builtin.grep_string({ search = word })
+		end)
+		vim.keymap.set("n", "<leader>pWs", function()
+			local word = vim.fn.expand("<cWORD>")
+			builtin.grep_string({ search = word })
+		end)
 	end,
 }

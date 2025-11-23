@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles version="12">
+  <profile kind="CodeFormatterProfile" name="My3SpaceProfile" version="12">
+    <!-- Use spaces and 3 spaces for tab/indent -->
+    <setting id="org.eclipse.jdt.core.formatter.tabulation.char" value="space"/>
+    <setting id="org.eclipse.jdt.core.formatter.tabulation.size" value="7"/>
+    <setting id="org.eclipse.jdt.core.formatter.indentation.size" value="7"/>
+
+    <!-- Keep default formatting settings for other options; you can expand/override here -->
+    <!-- Example: control brace positions, line wrapping, etc. Add more settings as needed. -->
+  </profile>
+</profiles>
