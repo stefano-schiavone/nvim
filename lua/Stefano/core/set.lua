@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 
+-- Cursor
+vim.opt.guicursor = "n-v-c-i:block"
+
 -- Sets Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true

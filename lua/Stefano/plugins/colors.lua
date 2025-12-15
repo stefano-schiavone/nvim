@@ -5,6 +5,7 @@ local themes = {
 	{ "bluz71/vim-nightfly-colors", as = "nightfly" }, -- NightFly
 	{ "catppuccin/nvim", as = "catppuccin" }, -- Catpuccin
 	{ "rockerBOO/boo-colorscheme-nvim", as = "boo" }, -- Halloween
+	{ "morhetz/gruvbox", as = "gruvbox" }, -- Halloween
 }
 
 local function SetUnifiedBackground()
