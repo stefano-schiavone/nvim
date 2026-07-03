@@ -1,10 +1,7 @@
 return {
-	"VonHeikemen/lsp-zero.nvim",
+	"neovim/nvim-lspconfig",
 	dependencies = {
-		"neovim/nvim-lspconfig",
 		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"L3MON4D3/LuaSnip",
 		"mattn/emmet-vim",
 	},
 
@@ -22,8 +19,7 @@ return {
 			bufnr = bufnr or 0
 			markers = markers or { ".git" }
 			local name = vim.api.nvim_buf_get_name(bufnr)
-			---@diagnostic disable-next-line: undefined-field return vim.lsp.rpc.start(config_cmd, dispatchers, { cwd = config.cmd_cwd, env = config.cmd_env, detached = config.detached, })
-			local start_dir = name ~= "" and vim.fs.dirname(name) or vim.loop.cwd()
+			local start_dir = name ~= "" and vim.fs.dirname(name) or vim.uv.cwd()
 			for _, m in ipairs(markers) do
 				local found = vim.fs.find(m, { path = start_dir, upward = true, type = "file" })[1]
 				if found then
@@ -41,6 +37,21 @@ return {
 			update_in_insert = false,
 		})
 
+		-- ANTLR4 SETUP
+		vim.filetype.add({ extension = { g4 = "antlr4" } })
+
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			pattern = "*.g4",
+			callback = function()
+				local file = vim.fn.expand("%:p")
+				local output = vim.fn.system("antlr " .. file .. " 2>&1")
+				if output ~= "" then
+					print(output)
+				else
+					print("ANTLR4: No errors")
+				end
+			end,
+		})
 		-- load every module in lua/Stefano/lsp/*.lua as Stefano.lsp.<name>
 		local lsp_mod_dir = vim.fn.stdpath("config") .. "/lua/Stefano/lsp"
 		local files = vim.split(vim.fn.glob(lsp_mod_dir .. "/*.lua"), "\n")

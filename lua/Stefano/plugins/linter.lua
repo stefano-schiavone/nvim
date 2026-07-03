@@ -17,6 +17,8 @@ return {
 		}
 
 		-- Configure linters for different filetypes
+		vim.list_extend(lint.linters.pylint.args, { "--disable=C,R" })
+
 		lint.linters_by_ft = {
 			python = { "pylint" },
 			javascript = { "eslint" },

@@ -51,12 +51,10 @@ return {
 				end, {})
 			end,
 			root_dir = function(bufnr)
-				local root_markers = { "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" }
-				if vim.fn.has("nvim-0.11.3") == 1 then
-					root_markers = { root_markers, { ".git" } }
-				else
-					vim.list_extend(root_markers, { ".git" })
-				end
+				local root_markers = {
+					{ "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" },
+					{ ".git" },
+				}
 				if find_root then
 					local root = find_root(bufnr, root_markers)
 					-- ensure there's an ESLint config somewhere up to (and including) project root

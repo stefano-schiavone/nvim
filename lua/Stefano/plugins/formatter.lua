@@ -69,12 +69,19 @@ return {
 						{ extra_args = { "--style", "{IndentWidth: 3, TabWidth: 3, UseTab: Never}" } }
 					),
 				},
+				arduino = {
+					make(
+						"clang_format",
+						{ extra_args = { "--style", "{IndentWidth: 3, TabWidth: 3, UseTab: Never}" } }
+					),
+				},
 
 				sh = { make("shfmt", { extra_args = { "-i", "3" } }) },
 
 				cs = { make("csharpier") },
 				-- For Java I'm using the lsp_fallback option. Find it in /Stefano/formatters/
 				-- java = { make("google-java-format") },
+				elm = { "elm_format" },
 			},
 
 			format_on_save = {

@@ -13,14 +13,6 @@ return {
 
 		local function switch_source_header(bufnr, client)
 			local method_name = "textDocument/switchSourceHeader"
-			if not client or not client.supports_method then
-				-- older clients expose supports_method as a function on client, but use :supports_method if available
-				if not client or not client.supports_method then
-					return vim.notify(
-						("method %s is not supported by any servers active on the current buffer"):format(method_name)
-					)
-				end
-			end
 			---@diagnostic disable-next-line:param-type-mismatch
 			if not client or not client:supports_method(method_name) then
 				return vim.notify(
